@@ -364,30 +364,65 @@ footer {
     overflow: hidden;
 }
 
-.footer-flower-band {
+.footer-wave {
     width: 100%;
     line-height: 0;
-    margin-bottom: 0;
+    margin-bottom: -1px;
 }
 
 .footer-content {
     text-align: center;
-    padding: 18px 20px 28px;
-    background-color: #c5dba8;
+    padding: 8px 24px 40px;
+    background-color: var(--green-dark);
+    color: #eef4e8;
 }
 
-.footer-content p {
-    font-size: 0.88rem;
-    color: #4a6a3a;
-    line-height: 1.8;
+.footer-brand {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.35rem;
+    letter-spacing: 0.3px;
+    color: #ffffff;
+    margin-bottom: 4px;
 }
 
-.footer-content a {
-    color: var(--green-dark);
+.footer-tag {
+    font-size: 0.92rem;
+    color: rgba(238,244,232,0.78);
+    margin-bottom: 20px;
+}
+
+.footer-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 6px 10px;
+    font-size: 0.9rem;
+    margin-bottom: 18px;
+}
+
+.footer-meta > span:not(.footer-dot),
+.footer-meta a { white-space: nowrap; }
+
+.footer-meta a {
+    color: #ffffff;
     text-decoration: none;
     font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+    padding-bottom: 1px;
+    transition: border-color 0.2s ease;
 }
-.footer-content a:hover { text-decoration: underline; }
+
+.footer-meta a:hover { border-bottom-color: #ffffff; }
+
+.footer-dot { color: rgba(238,244,232,0.5); }
+
+.footer-copy {
+    font-size: 0.8rem;
+    color: rgba(238,244,232,0.6);
+    margin: 0;
+}
 
 /* =====================================================
    RESPONSIVE
