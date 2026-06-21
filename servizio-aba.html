@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Servizio ABA — Analisi del Comportamento Applicata · Centro Abelia</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="style.css" rel="stylesheet" />
+<style>
+  :root {
+    --radius-sm:    10px;
+    --radius-pill:  50px;
+    --fs-h3:        1.1rem;
+    --fs-sm:        0.95rem;
+    --lh-body:      1.7;
+    --text-muted:   #666;
+    --accent-peach: #fdba74;
+    --shadow-warm:  0 6px 18px rgba(245,158,11,0.15);
+  }
+
+  /* ---- Header: variante versione_2 ---- */
+  .v2-header-container {
+    max-width:1100px; margin:0 auto; padding:20px 24px 14px;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;
+  }
+  .header-brand { font-weight:800; color:var(--green-dark); font-family:var(--font-heading); font-size:1.6rem; letter-spacing:.3px; margin:0; }
+  .header-sub   { font-size:.95rem; margin:0; color:var(--text-muted); }
+  .header-logo  { height:120px; width:auto; display:block; }
+
+  /* ---- Pill-label gialla ---- */
+  .pill-label {
+    display:inline-block; background-color:var(--accent-yellow); color:var(--green-dark);
+    font-family:var(--font-heading); font-weight:700; font-size:.82rem; letter-spacing:2px;
+    text-transform:uppercase; padding:4px 14px; border-radius:50px;
+  }
+
+  /* ---- Hero ABA ---- */
+  #aba-hero {
+    position:relative; overflow:hidden; background:var(--bg-light); padding:56px 0;
+  }
+  .aba-hero-blob {
+    position:absolute; top:-80px; right:-140px; width:620px; height:600px;
+    z-index:0; opacity:.7;
+    background:radial-gradient(ellipse at 60% 40%, #d6ecc4 0%, #c2dba4 40%, transparent 72%);
+    border-radius:55% 40% 65% 35% / 45% 55% 40% 60%;
+  }
+  #aba-hero .container { position:relative; z-index:1; }
+
+  /* ---- Titoli sezione ---- */
+  .section-h2 {
+    font-family:var(--font-heading); font-weight:800; font-size:1.9rem;
+    color:var(--green-dark); margin:0 0 .6rem; line-height:1.3;
+  }
+  .section-lead {
+    color:var(--green-text); font-size:1.05rem; font-style:italic; margin:0 0 32px; max-width:70ch;
+  }
+
+  /* ---- Card percorso (5 colori) ---- */
+  .percorsi-grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px;
+  }
+  .percorsi-card {
+    background:#fff; border-radius:var(--radius-card); padding:28px 26px;
+    box-shadow:var(--shadow-soft); height:100%; box-sizing:border-box;
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .percorsi-card:hover {
+    transform:translateY(-6px);
+    box-shadow:0 16px 36px rgba(90,125,109,.14);
+  }
+  .percorsi-card i { font-size:1.8rem; color:var(--green-dark); margin-bottom:12px; display:block; }
+  .percorsi-card h3 {
+    font-family:var(--font-heading); font-weight:800; font-size:var(--fs-h3);
+    color:var(--green-dark); margin:0 0 .5rem; line-height:1.3;
+  }
+  .percorsi-card p { font-size:.95rem; line-height:1.75; color:var(--text-color); margin:0; }
+
+  /* ---- Card info (NET / Strutturate / Rete / Fiducia) ---- */
+  .info-card {
+    background:#fff; border-radius:var(--radius-card); padding:28px 26px;
+    box-shadow:var(--shadow-soft); height:100%; box-sizing:border-box;
+  }
+  .info-card i { font-size:1.8rem; color:var(--green-dark); margin-bottom:12px; display:block; }
+  .info-card h3 {
+    font-family:var(--font-heading); font-weight:800; font-size:var(--fs-h3);
+    color:var(--green-dark); margin:0 0 .5rem; line-height:1.3;
+  }
+  .info-card p { font-size:.95rem; line-height:1.75; color:var(--text-color); margin:0; }
+
+  /* ---- Aree di lavoro ---- */
+  .aree-grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;
+  }
+  .area-item {
+    display:flex; align-items:center; gap:14px; background:#fff;
+    border-radius:var(--radius-sm, 10px); padding:16px 18px; box-shadow:var(--shadow-soft);
+  }
+  .area-icon {
+    width:42px; height:42px; border-radius:50%; background:var(--green-light);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .area-icon i { color:var(--green-dark); font-size:1.1rem; }
+  .area-label {
+    font-family:var(--font-heading); font-weight:700; color:var(--green-dark);
+    font-size:.98rem; line-height:1.3;
+  }
+  .area-note {
+    display:block; font-family:var(--font-body); font-weight:400; font-style:italic;
+    color:var(--text-muted); font-size:.82rem;
+  }
+
+  /* ---- Tag strumenti ---- */
+  .tools-row { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:24px; }
+  .tag-featured {
+    display:inline-flex; align-items:center; gap:8px; background:var(--green-dark); color:#fff;
+    font-family:var(--font-heading); font-weight:800; font-size:.9rem;
+    padding:9px 18px; border-radius:50px;
+  }
+  .tag-featured i { font-size:.78rem; color:var(--accent-yellow); }
+  .tag-green {
+    display:inline-block; background:var(--green-light); color:var(--green-dark);
+    font-family:var(--font-heading); font-weight:700; font-size:.88rem;
+    padding:6px 16px; border-radius:50px; border:1px solid var(--green-mid);
+  }
+
+  /* ---- CTA finale ---- */
+  .cta-gradient {
+    background:linear-gradient(135deg,#fef9c3 0%,var(--accent-yellow) 100%);
+    border-radius:20px; padding:44px 30px; text-align:center;
+    box-shadow:var(--shadow-warm);
+  }
+  .cta-gradient h2 { font-size:1.6rem; margin:0 0 .6rem; }
+  .cta-gradient p  { color:var(--green-text); font-size:1rem; margin:0 auto 1.6rem; max-width:50ch; }
+  .cta-gradient .cta-button { font-size:1rem; padding:14px 28px; }
+
+  /* ---- Responsive ---- */
+  @media (max-width:620px) {
+    .v2-header-container { flex-direction:column; align-items:center; text-align:center; }
+    .header-logo { height:90px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="v2-header-container">
+    <div>
+      <p class="header-brand">ABeliA</p>
+      <p class="header-sub">Centro per l'età evolutiva e Autismo</p>
+    </div>
+    <img src="logo_pulito.jpg" alt="Logo ABeliA — Centro per l'età evolutiva e Autismo" class="header-logo" />
+  </div>
+  <nav class="main-nav">
+    <div class="container">
+      <a href="index.html">Home</a>
+      <a class="nav-active" href="servizio-aba.html">Servizi</a>
+      <a href="chi-siamo.html">Chi Siamo</a>
+      <a href="index.html#contatti">Contatti</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ===== HERO ===== -->
+  <section id="aba-hero">
+    <div class="aba-hero-blob"></div>
+    <div class="container">
+      <a href="index.html#servizi" style="display:inline-flex;align-items:center;gap:8px;color:var(--green-dark);text-decoration:none;font-family:var(--font-heading);font-weight:700;font-size:.9rem;margin-bottom:18px;">
+        <i class="fa-solid fa-arrow-left" style="font-size:.8rem;"></i> Tutti i servizi
+      </a>
+      <div style="margin-bottom:14px;"><span class="pill-label">Il nostro servizio</span></div>
+      <h1 style="font-family:var(--font-heading);font-weight:900;font-size:2.4rem;color:var(--green-dark);line-height:1.25;margin:0 0 1.2rem;max-width:20ch;">
+        ABA – Analisi del Comportamento Applicata
+      </h1>
+      <p style="font-size:1rem;line-height:1.75;color:var(--text-color);max-width:72ch;margin:0;">
+        L'ABA è una scienza che utilizza strategie derivate dai principi dell'apprendimento per insegnare abilità
+        funzionali e ridurre i comportamenti problematici. Le principali linee guida cliniche internazionali la
+        riconoscono come l'intervento educativo più efficace per i bambini con diagnosi di Autismo, con effetti
+        documentati sul quoziente intellettivo, sul linguaggio e sui comportamenti adattivi. Non è una cura per
+        l'autismo, ma è il percorso che ad oggi sappiamo offrire risultati più solidi e duraturi: per noi è
+        soprattutto un modo delicato e rigoroso di stare al fianco di ogni bambino mentre cresce.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== I PERCORSI ===== -->
+  <section style="background:var(--green-light);padding:64px 0;">
+    <div class="container">
+      <h2 class="section-h2">I percorsi del servizio ABA</h2>
+      <p class="section-lead">Diverse forme di intervento, sempre costruite intorno al bambino e alla sua famiglia</p>
+      <div class="percorsi-grid">
+        <div class="percorsi-card" style="border-top:4px solid var(--logo-green);">
+          <i class="fa-solid fa-child-reaching"></i>
+          <h3>Interventi ABA Individualizzati</h3>
+          <p>Percorsi su misura, costruiti sulle priorità e sullo stile di apprendimento di ogni bambino.</p>
+        </div>
+        <div class="percorsi-card" style="border-top:4px solid var(--logo-blue);">
+          <i class="fa-solid fa-people-group"></i>
+          <h3>Interventi di gruppo</h3>
+          <p>Per lo sviluppo delle abilità sociali e per bambini ad Alto Funzionamento.</p>
+        </div>
+        <div class="percorsi-card" style="border-top:4px solid var(--accent-pink);">
+          <i class="fa-solid fa-comments"></i>
+          <h3>Consulenze per genitori e insegnanti</h3>
+          <p>Formazione e confronto per garantire coerenza tra casa, scuola e terapia.</p>
+        </div>
+        <div class="percorsi-card" style="border-top:4px solid var(--logo-yellow);">
+          <i class="fa-solid fa-chalkboard-user"></i>
+          <h3>Formazione</h3>
+          <p>Corsi per docenti e figure educative sulle metodologie comportamentali.</p>
+        </div>
+        <div class="percorsi-card" style="border-top:4px solid var(--accent-peach);">
+          <i class="fa-solid fa-magnifying-glass-chart"></i>
+          <h3>Supervisioni</h3>
+          <p>Guida professionale per i tecnici del comportamento.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LE AREE ===== -->
+  <section style="background:var(--bg-light);padding:64px 0;">
+    <div class="container">
+      <h2 class="section-h2">Le aree in cui lavoriamo insieme al bambino</h2>
+      <p style="font-size:1rem;line-height:1.75;color:var(--text-color);max-width:70ch;margin:0 0 32px;">
+        Costruiamo ogni percorso sulle priorità e sullo stile di apprendimento del singolo bambino, partendo solitamente da:
+      </p>
+      <div class="aree-grid">
+        <div class="area-item">
+          <span class="area-icon"><i class="fa-solid fa-comment-dots"></i></span>
+          <span class="area-label">Comunicazione<span class="area-note">mand training</span></span>
+        </div>
+        <div class="area-item">
+          <span class="area-icon"><i class="fa-solid fa-people-arrows"></i></span>
+          <span class="area-label">Abilità sociali</span>
+        </div>
+        <div class="area-item">
+          <span class="area-icon"><i class="fa-solid fa-clone"></i></span>
+          <span class="area-label">Imitazione</span>
+        </div>
+        <div class="area-item">
+          <span class="area-icon"><i class="fa-solid fa-ear-listen"></i></span>
+          <span class="area-label">Repertorio dell'ascoltatore</span>
+        </div>
+        <div class="area-item">
+          <span class="area-icon"><i class="fa-solid fa-shapes"></i></span>
+          <span class="area-label">Abilità visuo-spaziali</span>
+        </div>
+        <div class="area-item">
+          <span class="area-icon"><i class="fa-solid fa-puzzle-piece"></i></span>
+          <span class="area-label">Gioco</span>
+        </div>
+        <div class="area-item">
+          <span class="area-icon"><i class="fa-solid fa-shirt"></i></span>
+          <span class="area-label">Autonomie personali</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COME LAVORIAMO ===== -->
+  <section style="background:var(--green-light);padding:64px 0;">
+    <div class="container">
+      <h2 class="section-h2">Come lavoriamo</h2>
+      <p class="section-lead">Il nostro lavoro si muove su due binari che si intrecciano in ogni sessione</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-bottom:24px;">
+        <div class="info-card" style="border-top:4px solid var(--logo-green);">
+          <i class="fa-solid fa-seedling"></i>
+          <h3>Ambiente naturale (NET)</h3>
+          <p>Una parte importante avviene nell'ambiente naturale del bambino (NET – Natural Environment Teaching):
+          seguiamo i suoi interessi del momento e trasformiamo ciò che lo motiva in una vera opportunità di
+          apprendimento, valorizzando subito ogni piccolo progresso.</p>
+        </div>
+        <div class="info-card" style="border-top:4px solid var(--logo-blue);">
+          <i class="fa-solid fa-list-check"></i>
+          <h3>Attività strutturate</h3>
+          <p>In altri momenti proponiamo invece attività più strutturate, pensate per lavorare in modo mirato
+          su obiettivi specifici, partendo comunque da ciò che per il bambino ha senso e valore.</p>
+        </div>
+      </div>
+      <p style="font-size:1rem;line-height:1.75;color:var(--text-color);margin:0;max-width:74ch;">
+        Alterniamo le due modalità, in sessioni individuali o in piccolo gruppo, per offrirgli quante più occasioni
+        possibili di imparare giocando e sperimentando.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== VALUTAZIONE E STRUMENTI ===== -->
+  <section style="background:var(--bg-light);padding:64px 0;">
+    <div class="container">
+      <h2 class="section-h2">Valutazione e strumenti</h2>
+      <p style="font-size:1rem;line-height:1.75;color:var(--text-color);max-width:74ch;margin:0 0 8px;">
+        Ogni percorso parte da una valutazione iniziale delle competenze del bambino, condivisa fin da subito con la
+        famiglia per definire insieme obiettivi realistici e significativi. Lo strumento principale che utilizziamo è il
+        <strong>VB-MAPP</strong> (Verbal Behavior Milestones Assessment and Placement Program), che ci permette di
+        leggere in profondità lo sviluppo comunicativo, sociale e di apprendimento del bambino. Quando utile, lo
+        integriamo con altri strumenti riconosciuti a livello internazionale.
+      </p>
+      <div class="tools-row">
+        <span class="tag-featured"><i class="fa-solid fa-star"></i> VB-MAPP</span>
+        <span class="tag-green">ABLLS®-R</span>
+        <span class="tag-green">EBIC</span>
+        <span class="tag-green">Early Start Denver Model Curriculum Checklist</span>
+        <span class="tag-green">Essentials for Living</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RETE + RELAZIONE DI FIDUCIA ===== -->
+  <section style="background:var(--green-light);padding:64px 0;">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;">
+        <div class="info-card" style="border-top:4px solid var(--logo-teal);">
+          <i class="fa-solid fa-people-roof"></i>
+          <h3>Una rete intorno al bambino</h3>
+          <p>Il bambino non vive solo nelle sessioni di terapia, ma a casa, a scuola, con i nonni, con il pediatra,
+          con gli altri specialisti che lo seguono. Per questo ci mettiamo volentieri in dialogo con tutta la rete
+          che gli sta intorno — insegnanti, educatori, altri professionisti coinvolti — con formazione, consulenza
+          e momenti di confronto, per garantire coerenza ovunque il bambino si trovi.</p>
+        </div>
+        <div class="info-card" style="border-top:4px solid var(--accent-pink);">
+          <i class="fa-solid fa-heart"></i>
+          <h3>La relazione di fiducia</h3>
+          <p>Alla base di ogni intervento efficace c'è il rapporto che il terapeuta costruisce con il bambino,
+          attraverso attività che per lui sono motivanti e piacevoli. Un buon rapporto aumenta la motivazione,
+          riduce l'ansia e rende il bambino più disponibile a imparare e a fidarsi. La stessa fiducia la costruiamo
+          con voi genitori, con una comunicazione aperta e costante su progressi, dubbi e obiettivi condivisi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section style="background:var(--bg-light);padding:20px 0 72px;">
+    <div class="container">
+      <div class="cta-gradient">
+        <div style="font-size:2.8rem;margin-bottom:10px;">🌼</div>
+        <h2>Iniziamo da un primo incontro</h2>
+        <p>Il primo incontro conoscitivo è gratuito: ci raccontate la vostra storia e vi mostriamo come lavoriamo.</p>
+        <button class="cta-button" id="btn-prenota-aba">Prenota il primo incontro gratuito 🌸</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-wave" aria-hidden="true">
+    <svg viewBox="0 0 1200 70" width="100%" height="70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,70 L0,32 C200,2 400,2 600,26 C800,50 1000,50 1200,22 L1200,70 Z" fill="#5a7d6d"></path>
+    </svg>
+  </div>
+  <div class="footer-content">
+    <p class="footer-brand">ABeliA</p>
+    <p class="footer-tag">Centro per l'età evolutiva e Autismo · Brescia</p>
+    <p class="footer-copy">© 2025 ABeliA · Centro per l'età evolutiva e Autismo</p>
+  </div>
+</footer>
+
+<!-- ===== MODAL: FORM EMAIL ===== -->
+<div class="modal-overlay" id="modal-email">
+  <div class="modal-box">
+    <button aria-label="Chiudi" class="modal-close" id="modal-email-close">×</button>
+    <h3><i class="fa-solid fa-envelope" style="color:var(--green-dark);margin-right:8px;"></i>Scrivici una mail</h3>
+    <p>Compila il modulo e ti risponderemo al più presto!</p>
+    <form action="https://api.web3forms.com/submit" id="contact-form" method="POST">
+      <input type="hidden" name="access_key" value="04d916e7-f0ea-4aa8-8d6b-3181a8bc94f7" />
+      <input type="hidden" name="subject" value="Nuovo messaggio dal sito ABeliA" />
+      <input type="hidden" name="from_name" value="Sito ABeliA" />
+      <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off" />
+      <div class="form-group">
+        <label for="nome">Nome e Cognome *</label>
+        <input id="nome" name="nome" placeholder="Es. Mario Rossi" required type="text" />
+      </div>
+      <div class="form-group">
+        <label for="email">La tua Email *</label>
+        <input id="email" name="email" placeholder="mario@esempio.it" required type="email" />
+      </div>
+      <div class="form-group">
+        <label for="telefono">Telefono <span style="font-weight:400;color:#888;">(opzionale)</span></label>
+        <input id="telefono" name="telefono" placeholder="+39 000 000 0000" type="tel" />
+      </div>
+      <div class="form-group">
+        <label for="messaggio">Messaggio *</label>
+        <textarea id="messaggio" name="messaggio" placeholder="Descrivici brevemente la situazione..." required rows="4"></textarea>
+      </div>
+      <button class="cta-button" style="width:100%;margin-top:8px;justify-content:center;display:flex;align-items:center;gap:8px;" type="submit">
+        <i class="fa-solid fa-paper-plane"></i> Invia il messaggio
+      </button>
+      <p class="form-privacy">📧 La tua richiesta sarà inviata a <a href="mailto:info@abelia.it">info@abelia.it</a></p>
+    </form>
+    <div class="form-success-msg" id="form-success" style="display:none;">
+      <i class="fa-solid fa-circle-check"></i>
+      <h4>Messaggio inviato! 🌸</h4>
+      <p>Grazie per averci contattato. Ti risponderemo al più presto.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openModal(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+  function closeModal(id) { document.getElementById(id).style.display = 'none'; document.body.style.overflow = ''; }
+
+  document.querySelectorAll('.modal-overlay').forEach(function(el) {
+    el.addEventListener('click', function(e) { if (e.target === this) closeModal(this.id); });
+  });
+
+  function on(id, ev, fn) { var el = document.getElementById(id); if (el) el.addEventListener(ev, fn); }
+
+  on('btn-prenota-aba',  'click', function() { openModal('modal-email'); });
+  on('modal-email-close','click', function() { closeModal('modal-email'); });
+
+  var form = document.getElementById('contact-form');
+  if (form) form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var btn = this.querySelector('[type=submit]');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Invio in corso...';
+    try {
+      var res = await fetch(this.action, { method:'POST', body:new FormData(this), headers:{'Accept':'application/json'} });
+      var data = await res.json().catch(function(){ return {}; });
+      if (res.ok && (data.success || data.ok)) {
+        this.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+        var f = this, b = btn;
+        setTimeout(function() {
+          closeModal('modal-email');
+          setTimeout(function() {
+            f.style.display = 'block';
+            document.getElementById('form-success').style.display = 'none';
+            f.reset(); b.disabled = false;
+            b.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Invia il messaggio';
+          }, 300);
+        }, 4000);
+      } else {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Invia il messaggio';
+        alert('Ops! Qualcosa è andato storto. Scrivici direttamente a info@abelia.it');
+      }
+    } catch(err) {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Invia il messaggio';
+      alert('Errore di connessione. Scrivici direttamente a info@abelia.it');
+    }
+  });
+
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal('modal-email'); });
+</script>
+</body>
+</html>
