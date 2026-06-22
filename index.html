@@ -18,29 +18,7 @@
     --shadow-warm:    0 6px 18px rgba(245,158,11,0.15);
   }
 
-  /* ---- Header: testo grande a sinistra, logo a destra ---- */
-  .header-brand { font-weight:800; color:var(--green-dark); font-family:var(--font-heading); font-size:1.6rem; letter-spacing:.3px; margin:0; }
-  .header-sub   { font-size:.95rem; margin:0; color:var(--text-muted); }
-  .header-logo  { height:120px; width:auto; display:block; mix-blend-mode:multiply; }
-  .v2-header-container {
-    max-width:1100px; margin:0 auto; padding:10px 24px;
-    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
-  }
-
-  /* ---- Pill-label gialla ---- */
-  .pill-label {
-    display:inline-block; background-color:var(--accent-yellow); color:var(--green-dark);
-    font-family:var(--font-heading); font-weight:700; font-size:.82rem; letter-spacing:2px;
-    text-transform:uppercase; padding:4px 14px; border-radius:50px;
-  }
-
-  /* ---- Servizi: griglia 3 colonne + intro ---- */
-  .services-intro {
-    max-width:72ch; margin:0 auto 44px; text-align:center;
-    font-size:1.05rem; line-height:1.75; color:var(--text-color);
-  }
-  .services-intro p { margin:0 0 1rem; }
-  .services-intro p:last-child { margin:0; }
+  /* ---- Servizi: griglia 3 colonne ---- */
   .services-grid-3 {
     display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
     gap:26px; align-items:stretch; text-align:left;
@@ -70,14 +48,25 @@
     position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:0 24px;
     display:flex; align-items:center; gap:50px; flex-wrap:wrap;
   }
-  .perche-text { flex:1; min-width:320px; }
-  .perche-text h2 {
-    font-family:var(--font-heading); font-weight:800; font-size:2.1rem;
-    color:var(--green-dark); line-height:1.3; margin:.8rem 0 1.2rem;
-  }
+  .perche-text { flex:1; min-width:300px; }
   .perche-image-col {
     flex:0 0 380px; position:relative; display:flex; align-items:center; justify-content:center;
   }
+  .perche-centered {
+    position:relative; z-index:1; max-width:1100px; margin:4rem auto 0; padding:0 24px;
+    display:flex; align-items:flex-start; gap:56px; flex-wrap:wrap;
+  }
+  .perche-centered-left {
+    flex:0 0 280px; display:flex; flex-direction:column; gap:1.2rem;
+  }
+  .perche-centered-left h2 {
+    font-family:var(--font-heading); font-weight:800; font-size:2.1rem;
+    color:var(--green-dark); line-height:1.3; margin:0;
+  }
+  .perche-centered-right {
+    flex:1; min-width:280px;
+  }
+  .perche-centered .incipit-family { margin:1.2rem 0 0; }
 
   /* ---- Contatti: sovrascrive allineamento per h2 dentro contact-info ---- */
   .contact-info h2:first-child { margin-top:0; }
@@ -86,6 +75,8 @@
     .perche-inner { flex-direction:column; }
     .perche-image-col { flex:0 0 auto; align-self:center; }
     .perche-blob { right:-200px; width:500px; }
+    .perche-centered { flex-direction:column; }
+    .perche-centered-left { flex:0 0 auto; }
   }
 </style>
 </head>
@@ -113,39 +104,48 @@
 <!-- ===== PERCHÉ ABELIA ===== -->
 <section id="perche-abelia">
   <div class="perche-blob"></div>
-  <div class="services-intro" style="position:relative;z-index:1;margin-bottom:0;">
-    <p>Il Centro Abelia nasce per offrire alle famiglie un punto di riferimento accogliente, dove competenze
-    diverse lavorano insieme per accompagnare la crescita del bambino in tutte le sue aree di sviluppo, passo dopo passo.</p>
-    <p>All'interno del centro collaborano diversi servizi: <strong>ABA</strong> (Analisi del Comportamento Applicata),
-    <strong>Logopedia</strong> e <strong>supporto ai DSA</strong> (Disturbi Specifici dell'Apprendimento). Crediamo
-    che i risultati più belli nascano quando le diverse professionalità non lavorano in modo isolato, ma costruiscono
-    insieme, giorno dopo giorno, un progetto su misura per il bambino e la sua famiglia.</p>
-  </div>
-  <div style="height:3rem;position:relative;z-index:1;"></div>
+
+  <!-- Riga 1: intro + immagine affiancati -->
   <div class="perche-inner">
     <div class="perche-text">
-      <span class="pill-label">La nostra storia</span>
-      <h2>Perché Abelia</h2>
-      <p style="font-size:1rem;line-height:1.75;margin:0;">
-        Il nome <strong>Abelia</strong> racchiude al suo interno <strong>ABA</strong>, la scienza del comportamento che
-        abbiamo scelto per accompagnare la crescita dei bambini. L'Analisi del Comportamento Applicata si basa su
-        evidenze scientifiche e su un approccio individualizzato: osserva e valorizza i piccoli progressi quotidiani,
-        trasformandoli in nuove competenze comunicative, sociali e di autonomia.
+      <p style="font-size:1.05rem;line-height:1.75;margin:0 0 1rem;">
+        Il Centro Abelia nasce per offrire alle famiglie un punto di riferimento accogliente, dove competenze
+        diverse lavorano insieme per accompagnare la crescita del bambino in tutte le sue aree di sviluppo, passo dopo passo.
       </p>
-      <div class="incipit-family" style="margin:1.2rem 0;">
-        <span class="incipit-icon">🌱</span>
-        <span class="incipit-text">Come l'<strong>abelia</strong> — pianta che fiorisce a lungo e con grazia, capace di adattarsi nel tempo —
-        anche questo percorso richiede cura costante e fiducia. Abbiamo scelto questo nome perché racconta ciò in cui
-        crediamo: la bellezza che nasce dalla pazienza, e la possibilità, per ogni bambino, di <em>sbocciare a modo proprio</em>.</span>
-      </div>
-      <div style="margin-top:1.5rem;">
-        <button class="cta-button" id="btn-prenota-hero">Prenota il primo incontro gratuito 🌸</button>
-      </div>
+      <p style="font-size:1.05rem;line-height:1.75;margin:0;">
+        All'interno del centro collaborano diversi servizi: <strong>ABA</strong> (Analisi del Comportamento Applicata),
+        <strong>Logopedia</strong> e <strong>supporto ai DSA</strong> (Disturbi Specifici dell'Apprendimento). Crediamo
+        che i risultati più belli nascano quando le diverse professionalità non lavorano in modo isolato, ma costruiscono
+        insieme, giorno dopo giorno, un progetto su misura per il bambino e la sua famiglia.
+      </p>
     </div>
     <div class="perche-image-col">
       <div style="position:absolute;top:-10px;left:-20px;font-size:3.5rem;transform:scaleX(-1);filter:drop-shadow(2px 2px 3px rgba(0,0,0,.1));">🦒</div>
       <div class="image-circle-frame">
         <img src="studio.jpg" alt="La stanza di terapia ABA del Centro Abelia" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Riga 2: Perché Abelia — titolo a sx, testo a dx -->
+  <div class="perche-centered">
+    <div class="perche-centered-left">
+      <span class="pill-label">La nostra storia</span>
+      <h2>Perché Abelia</h2>
+      <button class="cta-button" id="btn-prenota-hero">Prenota il primo incontro gratuito 🌸</button>
+    </div>
+    <div class="perche-centered-right">
+      <p style="font-size:1rem;line-height:1.75;margin:0 0 1.2rem;">
+        Il nome <strong>Abelia</strong> racchiude al suo interno <strong>ABA</strong>, la scienza del comportamento che
+        abbiamo scelto per accompagnare la crescita dei bambini. L'Analisi del Comportamento Applicata si basa su
+        evidenze scientifiche e su un approccio individualizzato: osserva e valorizza i piccoli progressi quotidiani,
+        trasformandoli in nuove competenze comunicative, sociali e di autonomia.
+      </p>
+      <div class="incipit-family">
+        <span class="incipit-icon">🌱</span>
+        <span class="incipit-text">Come l'<strong>abelia</strong> — pianta che fiorisce a lungo e con grazia, capace di adattarsi nel tempo —
+        anche questo percorso richiede cura costante e fiducia. Abbiamo scelto questo nome perché racconta ciò in cui
+        crediamo: la bellezza che nasce dalla pazienza, e la possibilità, per ogni bambino, di <em>sbocciare a modo proprio</em>.</span>
       </div>
     </div>
   </div>
@@ -219,7 +219,7 @@
 </section>
 
 <!-- ===== CONTATTI ===== -->
-<section id="contatti" style="background:var(--green-light);padding:60px 0 80px;">
+<section id="contatti">
   <div class="container">
     <div class="contact-container">
       <div class="contact-info">
@@ -230,7 +230,7 @@
         <h2>Contatti</h2>
         <ul>
           <li style="align-items:flex-start;"><i class="fa-solid fa-phone" style="margin-top:4px;flex-shrink:0;"></i><span>Dott.sa Serio Ornella: <a href="tel:+393490036808">+39 349 003 6808</a><br>Dott.sa Daisy Joseph: <a href="tel:+393899366040">+39 389 936 6040</a></span></li>
-          <li><i class="fa-solid fa-envelope"></i><a href="mailto:info@abelia.it">info@abelia.it</a></li>
+          <li><i class="fa-solid fa-envelope"></i><a href="/cdn-cgi/l/email-protection#89e0e7efe6c9e8ebece5e0e8a7e0fd"><span class="__cf_email__" data-cfemail="076e696168476665626b6e66296e73">[email&#160;protected]</span></a></li>
           <li><i class="fa-brands fa-instagram"></i><a href="https://instagram.com/studio_abelia" target="_blank">@studio_abelia</a></li>
         </ul>
       </div>
@@ -289,7 +289,7 @@
       <button class="cta-button" style="width:100%;margin-top:8px;justify-content:center;display:flex;align-items:center;gap:8px;" type="submit">
         <i class="fa-solid fa-paper-plane"></i> Invia il messaggio
       </button>
-      <p class="form-privacy">📧 La tua richiesta sarà inviata a <a href="mailto:info@abelia.it">info@abelia.it</a></p>
+      <p class="form-privacy">📧 La tua richiesta sarà inviata a <a href="/cdn-cgi/l/email-protection#afc6c1c9c0efcecdcac3c6ce81c6db"><span class="__cf_email__" data-cfemail="bfd6d1d9d0ffdedddad3d6de91d6cb">[email&#160;protected]</span></a></p>
     </form>
     <div class="form-success-msg" id="form-success" style="display:none;">
       <i class="fa-solid fa-circle-check"></i>
@@ -313,7 +313,7 @@
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   function isMobileDevice() {
     return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
         || window.matchMedia('(max-width:768px)').matches;
