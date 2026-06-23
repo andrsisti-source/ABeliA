@@ -589,7 +589,7 @@ footer {
     display: flex;
     gap: 50px;
     align-items: center;
-    padding: 70px 0;
+    padding: 0;
 }
 .obiettivi-text { flex: 1; }
 .obiettivi-list {
